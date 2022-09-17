@@ -1,0 +1,2 @@
+.grow-icons * i { transition: all .2s ease-in-out; }
+.grow-icons * i:hover { transform: scale(1.2); }
