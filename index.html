@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="bootstrap-5.2.1-dist/js/bootstrap.bundle.js"></script>
 
     <link href="bootstrap-5.2.1-dist/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,28 +19,56 @@
 
     <title>Guido Dinello</title>
 </head>
+
 <body>
-    
-    <div class="container fixed-bottom">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top row">
-
-            <div class="col-sm-4 order-2 order-sm-0 d-flex justify-content-center  align-items-center">
-                <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
-            </div>
-
-            <a href="/" class="col-sm-4 order-1 order-sm-1 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none fw-bold">
-                Guido
-            </a>
-
-            <ul class="nav col-sm-4 order-0 order-sm-2 justify-content-center list-unstyled mb-3 mb-sm-0 d-flex grow-icons">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa fa-instagram fa-xl"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa fa-twitter fa-xl"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa fa-github fa-xl"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa fa-facebook fa-xl"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fab fa fa-linkedin fa-xl"></i></a></li>
+    <!-- Aca va el Header -->
+    <div class="row">
+        <div class="col-8 my-5 container">
+            <ul id="projectsList">
+                <!-- Aca van los proyectos -->
             </ul>
 
-        </footer>
+            <div class="card">
+                <div class="card-header">
+                    About me
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>Always curious and eager to learn</p>
+                        <footer class="blockquote-footer"><cite title="Source Title">Unknown</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Aca va el Footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Aca va la imagen del modal -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
+<script type="text/javascript" src="js/structural/navbar.js"></script>
+<script type="text/javascript" src="js/structural/footer.js"></script>
+<script type="module" src="js/functional/projectsEngine.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
 </html>
