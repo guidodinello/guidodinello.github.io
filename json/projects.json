@@ -1,0 +1,29 @@
+[
+    {
+        "title": "e-commerce",
+        "description": "E-commerce project for \"Jovenes a Programar\" course. Implementation of standard features such as login, user profile modification, product listing and sorting, category management, shopping cart functionality and purchase process.",
+        "image": "../json/home.png",
+        "url": "https://github.com/guidodinello/e-commerce",
+        "tabs": {
+            "login" : "../json/login.png",
+            "cart" : "../json/cart.png",
+            "sells" : "../json/sells.png",
+            "categories" : "../json/categories.png"
+        }
+    },
+    {
+        "title": "polygonal-evolutionary-algorithm",
+        "description": "",
+        "image": "https://github.com/guidodinello/polygonal-evolutionary-algorithm/blob/master/readme/results/girl.gif?raw=true",
+        "url": "https://github.com/guidodinello/polygonal-evolutionary-algorithm",
+        "tabs": ""
+    },
+    {
+        "title" : "Modelos-Estadisticos-para-Regresion-y-Clasificacion",
+        "description" : "Analysis of various datasets using algorithms such as PCA, EM, Regression Models, Decision Trees, KMeans, LDA, etc.",
+        "image" : "",
+        "url" : "https://github.com/guidodinello/Modelos-Estadisticos-para-Regresion-y-Clasificacion",
+        "tabs" : ""
+    }
+
+]
