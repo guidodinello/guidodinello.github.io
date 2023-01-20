@@ -1,2 +1,16 @@
 .grow-icons * i { transition: all .2s ease-in-out; }
 .grow-icons * i:hover { transform: scale(1.2); }
+
+.email-width {
+    width: 280px;
+}
+
+#navbarNavDarkDropdown {
+    display: flex;
+    justify-content: flex-end;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
