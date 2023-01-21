@@ -1,34 +1,54 @@
-import { cardBody, projectCard, imageElement } from "../components/project-card.js";
+import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
+import { Modal } from "../components/modal.js";
+import { getRepos } from "./github.js";
+import { readJSON } from "./jsonReader.js";
 
-const PROJECTS_PATH = "../../json/projects.json";
+const modal = new Modal(document.body);
 
-const modal = document.querySelector("#modal");
-const modalBody = modal.querySelector("#modalBody");
-const modalTitle = modal.querySelector("#modalLabel");
+const searchForm = document.querySelector("#searchForm");
+const input = searchForm.querySelector("input");
 
 async function loadProjects(){
-    const projects = await fetch(PROJECTS_PATH).then(r => r.json());
-    const projectsList = document.querySelector("#projectsList");
-    for (const project of projects) {
-        const left = cardBody(project.title, project.description, {name: "Go to project", url: project.url});
-        const right = imageElement(project.image, `${project.title} image cover`);
+    const memory = []
 
-        const card = projectCard(left, project.tabs, right);
+    const repos = await getRepos();
+    const images = await readJSON("../../config/images.json");
+    const ignoreProjects = await readJSON("../../config/ignore_projects.json");
+
+    // filter out projects that are in the ignore list
+    const projects = repos.reduce((result, repo) => {
+        if (! ignoreProjects.includes(repo.title))
+            result.push(repo);
+        return result;
+    }, []);
+
+    // pair projects with images
+    const projsImgs = []
+    projects.forEach((project, index) => projsImgs.push([project, images[index]]));
+
+    const projectsList = document.querySelector("#projectsList");
+    for (const [project, img] of projsImgs) {
+        const left = cardBody(project.title, project.description, {name: "Go to project", url: project.url});
+
+        // currently only supports 1 image per project
+        const right = imageElement(img, `${project.title} image cover`);
+
+        const card = projectCard(
+            left, 
+            tagFactory(project.tags), 
+            right
+        );
         projectsList.appendChild(card);
+
+        memory.push([card, project])
     }
-    return projectsList.children;
+    return memory;
 }
 
 const projectsCards = await loadProjects();
 
-const searchForm = document.querySelector("#searchForm");
-const input = searchForm.querySelector("input");
-const button = searchForm.querySelector("button");
-
 input.addEventListener("input", (e) => {
-    for (const card of projectsCards) {
-        const title = card.querySelector(".card-title").textContent;
-        const description = card.querySelector(".card-text").textContent;
+    for (const [card, {title, description}] of projectsCards) {
         if (title.includes(e.target.value) || description.includes(e.target.value)) {
             card.style.display = "block";
         } else {
