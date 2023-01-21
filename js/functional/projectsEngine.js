@@ -1,12 +1,7 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
-import { Modal } from "../components/modal.js";
+
 import { getRepos } from "./github.js";
 import { readJSON } from "./jsonReader.js";
-
-const modal = new Modal(document.body);
-
-const searchForm = document.querySelector("#searchForm");
-const input = searchForm.querySelector("input");
 
 async function loadProjects(){
     const memory = []
@@ -33,11 +28,7 @@ async function loadProjects(){
         // currently only supports 1 image per project
         const right = imageElement(img, `${project.title} image cover`);
 
-        const card = projectCard(
-            left, 
-            tagFactory(project.tags), 
-            right
-        );
+        const card = projectCard(left, tagFactory(project.tags), right);
         projectsList.appendChild(card);
 
         memory.push([card, project])
@@ -47,12 +38,22 @@ async function loadProjects(){
 
 const projectsCards = await loadProjects();
 
+const searchForm = document.querySelector("#searchForm");
+const input = searchForm.querySelector("input");
+const spinner = searchForm.querySelector("#spinner");
+
 input.addEventListener("input", (e) => {
-    for (const [card, {title, description}] of projectsCards) {
-        if (title.includes(e.target.value) || description.includes(e.target.value)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
+    spinner.classList.remove("d-none");
+    setTimeout(() => {
+        spinner.classList.add("d-none");
+    }, 1000);
+
+    for (const [card, {title, description, tags}] of projectsCards) {
+        const target = e.target.value.toLowerCase();
+        const tit = title.toLowerCase().includes(target);
+        const desc = (description || "").toLowerCase().includes(target);
+        const intags = tags.some(tag => tag.toLowerCase().includes(target));
+
+        card.style.display = (tit || desc || intags) ? "flex" : "none";
     }
 });

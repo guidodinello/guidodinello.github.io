@@ -1,6 +1,6 @@
 const CV_PATH = "../../resources/Guido Dinello.pdf"
 
-const brandHTML = `<a class="navbar-brand" href="#">Guido Dinello</a>`;
+const brandHTML = `<a class="navbar-brand" href="index.html">Guido Dinello</a>`;
 const dropdownName = "More";
 const dropdownItem = (name, url) => {
     return `<li><a class="dropdown-item" href="${url}">${name}</a></li>`;
@@ -11,9 +11,9 @@ const downloadableDropdownItem = (name, url) => {
 const searchBar = `
 <form id="searchForm" class="d-flex input-group" role="search">
     <input class="form-control" type="search" placeholder="Project name" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">
-        <div class="spinner-border spinner-border-sm text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
+    <button class="btn btn-outline-success">
+        <div id="spinner" class="spinner-border spinner-border-sm text-success d-none" role="status">
+            <span class="visually-hidden"></span>
         </div>    
         Search
     </button>
@@ -40,8 +40,6 @@ const header = `
                             ${dropdownName}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            ${dropdownItem("About Me", "#")}
-                            ${dropdownItem("Projects", "#")}
                             ${dropdownItem("Contact", "javascript: document.body.scrollIntoView(false);")}
                             ${downloadableDropdownItem("my_cv.pdf", CV_PATH)}
                         </ul>
