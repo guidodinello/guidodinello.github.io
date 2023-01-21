@@ -1,19 +1,20 @@
-export function imageElement(src, alt) {
-    return `<img ${src ? `src="${src}" alt="${alt}"` : "src='../../json/null.webp' alt='default image'"}>`;
+export function imageElement(src = "../../json/null.webp", alt = "default image") {
+    return `<img src="${src}" alt="${alt}" style="max-height:280px; object-fit:contain;">`;
 }
 
 export function cardBody(title, description, button) {
     return `
-<h5 class="card-title">${title}</h5>
-<p class="card-text" ${description ? `>${description}`: "style='height:20px;'>"}</p>
+<h5 class="card-title mb-4">${title}</h5>
+<p class="card-text mb-3" ${description ? `>${description}`: "style='height:30px;'>"}</p>
 ${button ? `<a href="${button.url}" class="btn btn-primary" target="_blank">${button.name}</a>` : ""}`;
 }
 
 export function tagFactory(tags) {
+    const GOOGLE_SEARCH = "https://www.google.com/search?q=";
     function tagHTML(name) {
         return `
         <li class="nav-item">
-            <div class="nav-link">${name}</div>
+            <a class="nav-link" target="_blank" href="${GOOGLE_SEARCH}${name}">${name}</a>
         </li>`;
     }
     let html = ""
@@ -33,7 +34,7 @@ export function projectCard(leftSideHTML, tagsHTML, rightSideHTML) {
         <div class="col-8 pe-3">
             ${leftSideHTML}
         </div>
-        <div class="col-4">
+        <div class="col-4 d-flex alig-items-center justify-content-center">
             ${rightSideHTML}
         </div>  
     </div>

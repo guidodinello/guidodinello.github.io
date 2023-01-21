@@ -2,8 +2,8 @@ export class Modal {
     constructor(parentNode) {
         this.modal = this.#element();
         parentNode.appendChild(this.modal);
-        this.title = document.getElementById("modalLabel");
-        this.body = document.getElementById("modalBody");
+        this.title = this.modal.querySelector("#modalLabel");
+        this.body = this.modal.querySelector("#modalBody");
     }
 
     #element() {
