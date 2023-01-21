@@ -1,7 +1,7 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
 
-import { getRepos } from "./github.js";
-import { readJSON } from "./jsonReader.js";
+import { getRepos } from "../utils/github.js";
+import { readJSON } from "../utils/jsonReader.js";
 
 async function loadProjects(){
     const memory = []
