@@ -1,4 +1,5 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
+import { wrapper } from "../components/spinner.js";
 
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
@@ -6,7 +7,7 @@ import { readJSON } from "../utils/jsonReader.js";
 async function loadProjects(){
     const memory = []
 
-    const repos = await getRepos();
+    const repos = await getRepos({element: wrapper(document.body), toggleClass: "d-none"});
     const images = await readJSON("../../config/images.json");
     const ignoreProjects = await readJSON("../../config/ignore_projects.json");
 
