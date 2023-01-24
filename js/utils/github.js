@@ -1,4 +1,11 @@
-export async function getRepos() {
+export async function getRepos({element: spinner, toggleClass: tcList}) {
+    if (spinner) {
+        spinnerWrapper.classList.remove(tcList);
+        setTimeout(() => {
+            spinnerWrapper.classList.add(tcList);
+        }, 400);        
+    }
+
     return await fetch('https://api.github.com/users/guidodinello/repos')
         .then(response => response.json())
         .then(data => {
@@ -13,5 +20,5 @@ export async function getRepos() {
         })
         .catch(error => {
             console.log(error);
-        });
+        })
 }

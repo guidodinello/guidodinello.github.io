@@ -1,4 +1,4 @@
-export function imageElement(src = "../../json/null.webp", alt = "default image") {
+export function imageElement(src = "../../resources/imgs/null.webp", alt = "default image") {
     return `<img src="${src}" alt="${alt}" style="max-height:280px; object-fit:contain;">`;
 }
 
