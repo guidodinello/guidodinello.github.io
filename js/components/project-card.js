@@ -12,10 +12,10 @@ export function cardBody(title, description, btnsArr) {
 }
 
 export function tagFactory(tags) {
-    const GOOGLE_SEARCH = "https://www.google.com/search?q=";
-    const classList = "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light";
-    const style = "min-width: 40px; font-size: small;";
     function tagHTML(name) {
+        const GOOGLE_SEARCH = "https://www.google.com/search?q=";
+        const classList = "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light";
+        const style = "min-width: 40px; font-size: small;";
         return `
         <li class="nav-item me-2">
             <a class="${classList}" style="${style}" target="_blank" href="${GOOGLE_SEARCH}${name}">${name}</a>

@@ -45,7 +45,7 @@ const projectsCards = await loadProjects();
 
 const searchForm = document.querySelector("#searchForm");
 const input = searchForm.querySelector("input");
-const spinner = searchForm.querySelector("#spinner");
+const spinner = searchForm.querySelector("#form-spinner");
 
 input.addEventListener("input", (e) => {
     spinner.classList.remove("d-none");
@@ -55,6 +55,7 @@ input.addEventListener("input", (e) => {
 
     for (const [card, {title, description, tags}] of projectsCards) {
         const target = e.target.value.toLowerCase();
+
         const tit = title.toLowerCase().includes(target);
         const desc = (description || "").toLowerCase().includes(target);
         const intags = tags.some(tag => tag.toLowerCase().includes(target));
