@@ -1,13 +1,15 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
-import { wrapper } from "../components/spinner.js";
+import { wrapper as spinnerWrapper } from "../components/spinner.js";
 
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
+const pageSpinnerWrapper = spinnerWrapper(document.body);
+
 async function loadProjects(){
     const memory = []
 
-    const repos = await getRepos({element: wrapper(document.body), toggleClass: "d-none"});
+    const repos = await getRepos({element: pageSpinnerWrapper, toggleClass: "d-none"});
     const images = await readJSON("../../config/images.json");
     const ignoreProjects = await readJSON("../../config/ignore_projects.json");
 
@@ -40,17 +42,16 @@ async function loadProjects(){
     }
     return memory;
 }
-
 const projectsCards = await loadProjects();
 
 const searchForm = document.querySelector("#searchForm");
-const input = searchForm.querySelector("input");
-const spinner = searchForm.querySelector("#form-spinner");
+const formInput = searchForm.querySelector("input");
+const formSpinner = searchForm.querySelector("#form-spinner");
 
-input.addEventListener("input", (e) => {
-    spinner.classList.remove("d-none");
+formInput.addEventListener("input", (e) => {
+    formSpinner.classList.remove("d-none");
     setTimeout(() => {
-        spinner.classList.add("d-none");
+        formSpinner.classList.add("d-none");
     }, 1000);
 
     for (const [card, {title, description, tags}] of projectsCards) {
