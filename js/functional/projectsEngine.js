@@ -24,7 +24,11 @@ async function loadProjects(){
 
     const projectsList = document.querySelector("#projectsList");
     for (const [project, img] of projsImgs) {
-        const left = cardBody(project.title, project.description, {name: "Go to project", url: project.url});
+
+        const buttons  = [{ text: "Go to source code", url: project.url}]
+        if (project.deployed)
+            buttons.push({ text: "Go to deploy", url: project.deployed });
+        const left = cardBody(project.title, project.description, buttons);
 
         // currently only supports 1 image per project
         const right = imageElement(img, `${project.title} image cover`);
