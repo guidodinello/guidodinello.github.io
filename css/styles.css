@@ -10,3 +10,10 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.increase-on-hover {
+    transition: all .1s;
+}
+.increase-on-hover:hover {
+    transform: scale(1.02);
+}

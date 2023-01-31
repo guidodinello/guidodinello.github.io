@@ -14,7 +14,9 @@ export async function getRepos({element: spinner, toggleClass: tcList}) {
                     "title" : repo["name"],
                     "description" : repo["description"],
                     "url" : repo["html_url"],
-                    "tags" : repo["topics"]
+                    "tags" : repo["topics"],
+                    "language" : repo["language"],
+                    "deployed" : repo["homepage"],
                 }
             })
         })
