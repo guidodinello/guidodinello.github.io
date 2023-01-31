@@ -1,5 +1,5 @@
-export async function getRepos({element: spinner, toggleClass: tcList}) {
-    if (spinner) {
+export async function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
+    if (spinnerWrapper) {
         spinnerWrapper.classList.remove(tcList);
         setTimeout(() => {
             spinnerWrapper.classList.add(tcList);
