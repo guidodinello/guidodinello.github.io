@@ -16,7 +16,7 @@ const searchBar = `
     <form id="searchForm" class="d-flex input-group" role="search">
         <input class="form-control" type="search" placeholder="Project name" aria-label="Search">
         <button class="btn btn-outline-success">
-            <div id="spinner" class="spinner-border spinner-border-sm text-success d-none" role="status">
+            <div id="form-spinner" class="spinner-border spinner-border-sm text-success d-none" role="status">
                 <span class="visually-hidden"></span>
             </div>    
             Search
