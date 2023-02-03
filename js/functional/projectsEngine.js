@@ -20,12 +20,14 @@ async function loadProjects(){
         return result;
     }, []);
 
-    // pair projects with images
-    const projsImgs = []
-    projects.forEach((project, index) => projsImgs.push([project, images[index]]));
+    // merge projects with images
+    const projsImgs = projects.map((project) => {
+        project.images = images[project.title]
+        return project;
+    });
 
     const projectsList = document.querySelector("#projectsList");
-    for (const [project, img] of projsImgs) {
+    for (const project of projsImgs) {
 
         const buttons  = [{ text: "Go to source code", url: project.url}]
         if (project.deployed)
@@ -33,7 +35,7 @@ async function loadProjects(){
         const left = cardBody(project.title, project.description, buttons);
 
         // currently only supports 1 image per project
-        const right = imageElement(img, `${project.title} image cover`);
+        const right = imageElement(project.images[0], `${project.title} image cover`);
 
         const card = projectCard(left, tagFactory(project.tags), right);
         projectsList.appendChild(card);
