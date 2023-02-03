@@ -1,7 +1,10 @@
 {
     "Arquitectura-de-Computadoras": ["../resources/imgs/assembly.png"],
     "contablito": ["../resources/imgs/contablito.jpeg"],
-    "CS50.Intro-to-AI-with-Python": ["../resources/imgs/CS50AI.png"],
+    "CS50.Intro-to-AI-with-Python": [
+        "../resources/imgs/CS50AI.png",
+        "../resources/imgs/cs50aiRobot.webp"
+    ],
     "e-commerce": ["../resources/imgs/home.png"],
     "guidodinello.github.io": ["../resources/imgs/personal-website.png"],
     "Metodos-Numericos": ["../resources/imgs/newton-raphson.png"],

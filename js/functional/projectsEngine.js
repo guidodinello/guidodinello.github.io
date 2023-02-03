@@ -1,5 +1,6 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
 import { wrapper as spinnerWrapper } from "../components/spinner.js";
+import { Carousel } from "../components/carousel.js";
 
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
@@ -36,10 +37,18 @@ async function loadProjects(){
 
         const left = cardBody(project.title, project.description, buttons);
 
-        // currently only supports 1 image per project
-        const right = imageElement(project.images[0], `${project.title} image cover`);
+        const imgCarr = new Carousel(project.title)
+        console.log(project.images)
+        imgCarr.addItems(
+            project.images, 
+            (img) => {
+                const imageCreator = () => { return imgCarr.imageDefault(img, null)};
+                return imgCarr.slideCreator( imageCreator )
+            }
+        );
+        const right = imgCarr.reference();
 
-        const card = projectCard(left, tagFactory(project.tags), right);
+        const card = projectCard(left, tagFactory(project.tags), right.outerHTML);
         projectsList.appendChild(card);
 
         memory.push([card, project])
