@@ -34,13 +34,13 @@ export function projectCard(leftSideHTML, tagsHTML, rightSideHTML) {
     card.classList.add("project-item", "card", "text-center", "mb-4");
     card.innerHTML = `
 <div class="card-body">
-    <div class="row-cols-2 d-flex">
-        <div class="col-8 pe-3">
-            ${leftSideHTML}
-        </div>
-        <div class="col-4 d-flex alig-items-center justify-content-center">
+    <div class="row d-flex">
+        <div class="order-md-last col-md-4 d-flex alig-items-center justify-content-center p-3 py-md-0 ps-md-0">
             ${rightSideHTML}
         </div>  
+        <div class="order-md-first col-md-8 pe-3">
+            ${leftSideHTML}
+        </div>
     </div>
 </div>
 <div class="card-header">
