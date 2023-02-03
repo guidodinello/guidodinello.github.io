@@ -6,19 +6,23 @@ export async function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
         }, 400);        
     }
 
-    const response = await fetch('https://api.github.com/users/guidodinello/repos');
-    const json = await response.json();
-    const data = json.map(async repo => {
-        return {
-            "title" : repo["name"],
-            "description" : repo["description"],
-            "url" : repo["html_url"],
-            "tags" : repo["topics"],
-            "language" : repo["language"],
-            "deploy" : repo["homepage"] || getGithubPagesUrl(repo["name"]),
-        }
+    return await fetch('https://api.github.com/users/guidodinello/repos')
+    .then(response => response.json())
+    .then(data => { 
+        return data.map( repo => {
+            return {
+                "title" : repo["name"],
+                "description" : repo["description"],
+                "url" : repo["html_url"],
+                "tags" : repo["topics"],
+                "language" : repo["language"],
+                "deploy" : repo["homepage"] || getGithubPagesUrl(repo["name"]),
+            }
+        })
     })
-    return data;
+    .catch(error => {
+        console.log("ERROR while fetchhing user repos: ", error);
+    })
 }
 
 async function getGithubPagesUrl(repo_name) {
