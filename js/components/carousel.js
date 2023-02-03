@@ -11,7 +11,7 @@ export class Carousel {
         items.forEach(item => {
             this.itemsList.appendChild(slideFunc(item))
         });
-        // add one slide if there are no slides
+        // add one default slide if there are no slides
         if (!this.itemsList.firstElementChild)
             this.itemsList.appendChild(this.slideCreator( this.imageDefault ));
         // add active class to the first slide

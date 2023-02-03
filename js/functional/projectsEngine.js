@@ -38,11 +38,10 @@ async function loadProjects(){
         const left = cardBody(project.title, project.description, buttons);
 
         const imgCarr = new Carousel(project.title)
-        console.log(project.images)
         imgCarr.addItems(
             project.images, 
             (img) => {
-                const imageCreator = () => { return imgCarr.imageDefault(img, null)};
+                const imageCreator = () => { return imgCarr.imageDefault(img, null) };
                 return imgCarr.slideCreator( imageCreator )
             }
         );
