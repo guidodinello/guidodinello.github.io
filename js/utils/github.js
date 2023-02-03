@@ -9,17 +9,13 @@ export async function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
     const response = await fetch('https://api.github.com/users/guidodinello/repos');
     const json = await response.json();
     const data = json.map(async repo => {
-        const gh = await getGithubPagesUrl(repo["name"]);
-        console.log("gh ", gh)
-        const url = repo["homepage"] || gh;
-        console.log("url ", url)
         return {
             "title" : repo["name"],
             "description" : repo["description"],
             "url" : repo["html_url"],
             "tags" : repo["topics"],
             "language" : repo["language"],
-            "deploy" : url,
+            "deploy" : repo["homepage"] || getGithubPagesUrl(repo["name"]),
         }
     })
     return data;
@@ -27,12 +23,8 @@ export async function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
 
 async function getGithubPagesUrl(repo_name) {
     /* workaround, github api doesnt return gh pages url with the repo info */
-    const response = await fetch(
-        `https://guidodinello.github.io/${repo_name}`, 
-        { method: 'HEAD', mode: 'cors' }
-    )
-    
-    console.log(repo_name, response.status)
+    const response = await fetch(`https://guidodinello.github.io/${repo_name}`, { method: 'HEAD' });
+
     // 404 page doesnt exist
     if (response.status == '404') {
         return;    

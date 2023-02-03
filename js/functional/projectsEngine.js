@@ -30,9 +30,10 @@ async function loadProjects(){
     for (const project of projsImgs) {
 
         const buttons  = [{ text: "Go to source code", url: project.url }]
-        // if theres github pages associated to the repo
+        // add another button if theres github pages associated to the repo
         if (project.deployed)
             buttons.push({ text: "Go to deploy", url: project.deployed });
+
         const left = cardBody(project.title, project.description, buttons);
 
         // currently only supports 1 image per project
