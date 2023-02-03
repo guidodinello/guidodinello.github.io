@@ -30,7 +30,7 @@ export async function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
 
 async function getGithubPagesUrl(repo_name) {
     /* workaround, github api doesnt return gh pages url with the repo info */
-    fetch(`https://cors-anywhere.herokuapp.com/https://guidodinello.github.io/${repo_name}`, { method: 'HEAD' })
+    fetch(`https://guidodinello.github.io/${repo_name}`, { method: 'HEAD' })
     .then(response => {
         console.log("repo ", repo_name, "response ", response)
         if (response.status == '404') { console.log("Repo not found"); return; }
