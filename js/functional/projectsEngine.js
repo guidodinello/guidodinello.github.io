@@ -32,8 +32,8 @@ async function loadProjects(){
 
         const buttons  = [{ text: "Go to source code", url: project.url }]
         // add another button if theres github pages associated to the repo
-        if (project.deployed)
-            buttons.push({ text: "Go to deploy", url: project.deployed });
+        if (project.deploy)
+            buttons.push({ text: "Go to deploy", url: project.deploy });
 
         const left = cardBody(project.title, project.description, buttons);
 
