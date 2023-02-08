@@ -23,7 +23,7 @@ async function loadProjects(){
 
     // merge projects with images
     const projsImgs = projects.map((project) => {
-        project["images"] = images[project.title]
+        project["images"] = images[project.title] || [];
         return project;
     });
 
