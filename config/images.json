@@ -13,8 +13,14 @@
     "Programacion2": ["../resources/imgs/datastructures.png"],
     "Programacion3": ["../resources/imgs/dijkstra-algorithm.jpeg"],
     "Programacion4": ["../resources/imgs/hotel-management.jpg"],
-    "Taller-de-Programacion": ["../resources/imgs/turismoUY.png"],
+    "Taller-de-Programacion": [
+        "../resources/imgs/turismoUY.png",
+        "../resources/imgs/turismoUY-actividad.png",
+        "../resources/imgs/turismoUY-login.png",
+        "../resources/imgs/turismoUY-salida.png"
+    ],
     "Teoria-de-Lenguajes": ["../resources/imgs/automata-theory.png"],
     "ejtos-react_budget_app": [],
-    "uqwxd-react_labs": []
+    "uqwxd-react_labs": [],
+    "expressBookReviews" : []
 }
