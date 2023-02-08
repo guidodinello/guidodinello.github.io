@@ -1,11 +1,14 @@
 import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
 import { wrapper as spinnerWrapper } from "../components/spinner.js";
 import { Carousel } from "../components/carousel.js";
+import { Modal } from "../components/modal.js";
+import { header } from "../components/utils.js";
 
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
 const pageSpinnerWrapper = spinnerWrapper(document.body);
+const pageModal = new Modal("pageModal", document.body);
 
 async function loadProjects(){
     const memory = []
@@ -41,15 +44,27 @@ async function loadProjects(){
         imgCarr.addItems(
             project.images, 
             (img) => {
-                const imageCreator = () => { return imgCarr.imageDefault(img, null) };
+                const imageCreator = () => { return imgCarr.imageDefault(img, `${project.title} illustrative image`) };
                 return imgCarr.slideCreator( imageCreator )
             }
         );
-        const right = imgCarr.reference();
 
-        const card = projectCard(left, tagFactory(project.tags), right.outerHTML);
+
+        const showInModal = () => {
+            pageModal.update(
+                header('1', null, null, null, project.title), 
+                imgCarr.clone().DOMreference()
+            );
+            pageModal.show()
+        }
+        imgCarr.DOMreference().style.cursor = "zoom-in";
+
+        const card = projectCard(left, tagFactory(project.tags), imgCarr.DOMreference());
         projectsList.appendChild(card);
-
+        
+        console.log(imgCarr.DOMreference().isConnected)
+        imgCarr.DOMreference().addEventListener("click", showInModal);
+        
         memory.push([card, project])
     }
     return memory;

@@ -1,40 +1,62 @@
 export class Modal {
-    constructor(parentNode) {
+    constructor(id, parentNode) {
+        this.id = this.#sanitize(id);
         this.modal = this.#element();
         parentNode.appendChild(this.modal);
-        this.title = this.modal.querySelector("#modalLabel");
-        this.body = this.modal.querySelector("#modalBody");
+        this.caption = this.modal.querySelector(".modal-caption");
+        this.body = this.modal.querySelector(".modal-body");
+    }
+
+    DOMreference() {
+        return this.modal;
     }
 
     #element() {
         const modal = document.createElement("div");
-        modal.classList.add("modal", "fade");
-        modal.setAttribute("id", "modal");
-        modal.setAttribute("tabindex", "-1");
-        modal.setAttribute("aria-labelledby", "ModalLabel");
-        modal.setAttribute("aria-hidden", "true");
+        modal.classList.add("modal");
+        modal.setAttribute("id", this.id);
+        modal.style.display = "none";
+
         modal.innerHTML = `
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Aca va la imagen del modal -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>`;
+        <div class="modal-body"></div>
+        <span class="modal-caption d-flex justify-content-center" style="color:white">
+        </span>`;
+
+        const span = document.createElement("span");
+        span.classList.add("modal-close");
+        span.innerHTML = "&times;";
+        span.onclick = () => {
+            modal.style.display = "none";
+        }
+
+        modal.prepend(span);
 
         return modal;
     }
 
-    update(title, body) {
-        this.title.textContent = title;
-        this.body.innerHTML = body;
+    update(caption, body) {
+        this.caption.innerHTML = '';
+        this.body.innerHTML = '';
+        let copy;
+        if (caption) {
+            copy = caption.cloneNode(true);
+            this.caption.appendChild(copy);
+        }
+        if (body) {
+            copy = body.cloneNode(true);
+            this.body.appendChild(copy);
+        }
+    }
+
+    show() {
+        this.modal.style.display = "block";
+    }
+
+    hide() {
+        this.modal.style.display = "none";
     }
     
+    #sanitize(id) {
+        return id.replace(/[^a-zA-Z0-9]/g, '');
+    }
 }

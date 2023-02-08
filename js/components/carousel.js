@@ -1,10 +1,20 @@
 export class Carousel {
     constructor(id, parentNode) {
-        this.id = this.sanitize(id);
+        this.id = this.#sanitize(id);
         this.carousel = this.#element();
         if (parentNode) 
             parentNode.appendChild(this.carousel)
         this.itemsList = this.carousel.querySelector('.carousel-inner');
+    }
+
+
+    clone() {
+        const copy = new Carousel(`${this.id}Copy`);
+        copy.carousel = this.carousel.cloneNode(true);
+        copy.carousel.setAttribute('id', `carouselControls${copy.id}`);
+        copy.carousel.querySelector('.carousel-control-prev').setAttribute('data-bs-target', `#carouselControls${copy.id}`);
+        copy.carousel.querySelector('.carousel-control-next').setAttribute('data-bs-target', `#carouselControls${copy.id}`);
+        return copy;
     }
 
     addItems(items, slideFunc) {
@@ -18,16 +28,24 @@ export class Carousel {
         this.itemsList.firstElementChild.classList.add('active');
     }
 
-    slideCreator(creatorFunc) {
+    slideCreator(creatorFunc, onclickevent = void(0)) {
         const item = document.createElement('div');
         item.classList.add('carousel-item', 'h-100');
-        //item.setAttribute('data-bs-interval', '2000');
+        item.addEventListener('click', onclickevent);
         item.innerHTML = creatorFunc(); 
         return item;
     }
 
     imageDefault(src = "../../resources/imgs/null.webp", alt = "default image") {
         return `<img src="${src}" class="d-block w-100 h-100" style="object-fit:contain;" alt="${alt}">`;
+    }
+
+    DOMreference() {
+        return this.carousel;
+    }
+
+    id() {
+        return this.id;
     }
 
     #element() {
@@ -52,15 +70,7 @@ export class Carousel {
         return carousel;
     }
 
-    reference() {
-        return this.carousel;
-    }
-
-    id() {
-        return this.id;
-    }
-
-    sanitize(id) {
+    #sanitize(id) {
         return id.replace(/[^a-zA-Z0-9]/g, '');
     }
 }
