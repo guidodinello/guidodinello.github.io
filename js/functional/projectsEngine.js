@@ -61,9 +61,8 @@ async function loadProjects(){
 
         const card = projectCard(left, tagFactory(project.tags), imgCarr.DOMreference());
         projectsList.appendChild(card);
-        
-        console.log(imgCarr.DOMreference().isConnected)
-        imgCarr.DOMreference().addEventListener("click", showInModal);
+
+        imgCarr.itemsList.addEventListener("click", showInModal);
         
         memory.push([card, project])
     }
