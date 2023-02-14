@@ -1,5 +1,5 @@
 import { cardBody, projectCard, tagFactory } from "../components/project-card.js";
-import { wrapper as spinnerWrapper } from "../components/spinner.js";
+import { SpinnerWrapper } from "../components/spinner.js";
 import { Carousel } from "../components/carousel.js";
 import { Modal } from "../components/modal.js";
 import { header } from "../components/utils.js";
@@ -7,21 +7,13 @@ import { header } from "../components/utils.js";
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
-const pageSpinnerWrapper = spinnerWrapper(document.body);
 const pageModal = new Modal("pageModal", document.body);
 const searchForm = document.querySelector("#searchForm");
 const formInput = searchForm.querySelector("input");
 const formSpinner = searchForm.querySelector("#form-spinner");
 
-document.onreadystatechange = () => {
-    if (document.readyState !== "complete") {
-        document.querySelector("#mainContainer").style.visibility = "hidden";
-        pageSpinnerWrapper.classList.remove("d-none");
-    } else {
-        pageSpinnerWrapper.classList.add("d-none");
-        document.querySelector("#mainContainer").style.visibility = "visible";
-    }
-};
+const pageSpinnerWrapper = new SpinnerWrapper("spinnerWrapper", document.body);
+pageSpinnerWrapper.show();
 
 async function loadProjects(){
     const memory = []
@@ -79,8 +71,10 @@ async function loadProjects(){
     }
     return memory;
 }
-const projectsCards = await loadProjects();
 
+
+const projectsCards = await loadProjects();
+pageSpinnerWrapper.hide();
 formInput.addEventListener("input", (e) => {
     formSpinner.classList.remove("d-none");
     setTimeout(() => {
