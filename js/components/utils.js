@@ -10,11 +10,15 @@ function factory(tag, id, classList, innerHTML) {
     return element;
 }
 
-export function header(nro = "1", id, classList, innerHTML, text) {
-    text = text || "";
+export function img(tag, id, classList, innerHTML, src, alt) {
+    const img = factory(tag, id, classList, innerHTML);
+    img.alt = alt || "";
+    img.src = src || "";
+}
 
+export function header(nro = "1", id, classList, innerHTML, text) {
     const h = factory(`h${nro}`, id, classList, innerHTML);
-    h.textContent = text;
+    h.textContent = text || "";
     return h;
 }
 
@@ -24,9 +28,7 @@ export function div(id, classList, innerHTML) {
 }
 
 export function button(id, classList, innerHTML, text) {
-    text = text || "";
-    
     const btn = factory("button", id, classList, innerHTML);
-    btn.textContent = text;
+    btn.textContent = text || "";
     return btn;
 }

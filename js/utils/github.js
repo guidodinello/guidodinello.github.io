@@ -1,11 +1,4 @@
-export function getRepos({element: spinnerWrapper, toggleClass: tcList}) {
-    if (spinnerWrapper) {
-        spinnerWrapper.classList.remove(tcList);
-        setTimeout(() => {
-            spinnerWrapper.classList.add(tcList);
-        }, 400);        
-    }
-
+export function getRepos(){
     return fetch('https://api.github.com/users/guidodinello/repos')
     .then(response => response.json())
     .then( data => { 
