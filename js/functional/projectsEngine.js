@@ -1,4 +1,4 @@
-import { cardBody, projectCard, imageElement, tagFactory } from "../components/project-card.js";
+import { cardBody, projectCard, tagFactory } from "../components/project-card.js";
 import { wrapper as spinnerWrapper } from "../components/spinner.js";
 import { Carousel } from "../components/carousel.js";
 import { Modal } from "../components/modal.js";
@@ -9,11 +9,24 @@ import { readJSON } from "../utils/jsonReader.js";
 
 const pageSpinnerWrapper = spinnerWrapper(document.body);
 const pageModal = new Modal("pageModal", document.body);
+const searchForm = document.querySelector("#searchForm");
+const formInput = searchForm.querySelector("input");
+const formSpinner = searchForm.querySelector("#form-spinner");
+
+document.onreadystatechange = () => {
+    if (document.readyState !== "complete") {
+        document.querySelector("#mainContainer").style.visibility = "hidden";
+        pageSpinnerWrapper.classList.remove("d-none");
+    } else {
+        pageSpinnerWrapper.classList.add("d-none");
+        document.querySelector("#mainContainer").style.visibility = "visible";
+    }
+};
 
 async function loadProjects(){
     const memory = []
 
-    const repos = await getRepos({element: pageSpinnerWrapper, toggleClass: "d-none"});
+    const repos = await getRepos();
     const images = await readJSON("../../config/images.json");
     const ignoreProjects = await readJSON("../../config/ignore_projects.json");
 
@@ -41,6 +54,7 @@ async function loadProjects(){
         const left = cardBody(project.title, project.description, buttons);
 
         const imgCarr = new Carousel(project.title)
+        imgCarr.DOMreference().style.cursor = "zoom-in";
         imgCarr.addItems(
             project.images, 
             (img) => {
@@ -49,6 +63,8 @@ async function loadProjects(){
             }
         );
 
+        const card = projectCard(left, tagFactory(project.tags), imgCarr.DOMreference());
+        projectsList.appendChild(card);
 
         const showInModal = () => {
             pageModal.update(
@@ -57,11 +73,6 @@ async function loadProjects(){
             );
             pageModal.show()
         }
-        imgCarr.DOMreference().style.cursor = "zoom-in";
-
-        const card = projectCard(left, tagFactory(project.tags), imgCarr.DOMreference());
-        projectsList.appendChild(card);
-
         imgCarr.itemsList.addEventListener("click", showInModal);
         
         memory.push([card, project])
@@ -69,10 +80,6 @@ async function loadProjects(){
     return memory;
 }
 const projectsCards = await loadProjects();
-
-const searchForm = document.querySelector("#searchForm");
-const formInput = searchForm.querySelector("input");
-const formSpinner = searchForm.querySelector("#form-spinner");
 
 formInput.addEventListener("input", (e) => {
     formSpinner.classList.remove("d-none");

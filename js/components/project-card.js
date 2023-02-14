@@ -1,7 +1,3 @@
-export function imageElement(src = "../../resources/imgs/null.webp", alt = "default image") {
-    return `<img src="${src}" alt="${alt}" style="max-height:280px; object-fit:contain;">`;
-}
-
 export function cardBody(title, description, btnsArr) {
     return `
 <h5 class="card-title mb-4">${title}</h5>
