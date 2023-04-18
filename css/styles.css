@@ -1,19 +1,23 @@
-.grow-icons * i { transition: all .2s ease-in-out; }
-.grow-icons * i:hover { transform: scale(1.2); }
+.grow-icons * i {
+  transition: all 0.2s ease-in-out;
+}
+.grow-icons * i:hover {
+  transform: scale(1.2);
+}
 
 #navbarNavDarkDropdown {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .increase-on-hover {
-    transition: all .1s;
+  transition: all 0.1s;
 }
 .increase-on-hover:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }

@@ -27,7 +27,7 @@ export class Modal {
         span.innerHTML = "&times;";
         span.onclick = () => {
             modal.style.display = "none";
-        }
+        };
 
         modal.prepend(span);
 
@@ -35,8 +35,8 @@ export class Modal {
     }
 
     update(caption, body) {
-        this.caption.innerHTML = '';
-        this.body.innerHTML = '';
+        this.caption.innerHTML = "";
+        this.body.innerHTML = "";
         let copy;
         if (caption) {
             copy = caption.cloneNode(true);
@@ -55,8 +55,8 @@ export class Modal {
     hide() {
         this.modal.style.display = "none";
     }
-    
+
     #sanitize(id) {
-        return id.replace(/[^a-zA-Z0-9]/g, '');
+        return id.replace(/[^a-zA-Z0-9]/g, "");
     }
 }
