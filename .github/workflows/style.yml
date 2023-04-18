@@ -1,0 +1,36 @@
+name: Code Style Checks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  code-style-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install eslint prettier htmlhint
+
+      - name: Run ESLint
+        run: npx eslint . --quiet
+
+      - name: Run Prettier
+        run: npx prettier --check .
+
+      - name: Run HTMLHint
+        run: npx htmlhint .
+
+      - name: Stop build on style violations
+        run: |
+          if npx eslint . --quiet && npx prettier --check . && npx htmlhint .; then
+            echo "All style checks passed"
+          else
+            echo "Style checks failed - stopping build"
+            exit 1
+          fi
