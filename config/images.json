@@ -1,26 +1,30 @@
 {
-    "Arquitectura-de-Computadoras": ["../resources/imgs/assembly.png"],
-    "contablito": ["../resources/imgs/contablito.jpeg"],
-    "CS50.Intro-to-AI-with-Python": [
-        "../resources/imgs/CS50AI.png",
-        "../resources/imgs/cs50aiRobot.webp"
-    ],
-    "e-commerce": ["../resources/imgs/home.png"],
-    "guidodinello.github.io": ["../resources/imgs/personal-website.png"],
-    "Metodos-Numericos": ["../resources/imgs/newton-raphson.png"],
-    "Modelos-Estadisticos-para-Regresion-y-Clasificacion": ["../resources/imgs/modelos-estadisticos.png"],
-    "polygonal-evolutionary-algorithm": ["../resources/imgs/polygonal-evolutionary-algorithm.gif"],
-    "Programacion2": ["../resources/imgs/datastructures.png"],
-    "Programacion3": ["../resources/imgs/dijkstra-algorithm.jpeg"],
-    "Programacion4": ["../resources/imgs/hotel-management.jpg"],
-    "Taller-de-Programacion": [
-        "../resources/imgs/turismoUY.png",
-        "../resources/imgs/turismoUY-actividad.png",
-        "../resources/imgs/turismoUY-login.png",
-        "../resources/imgs/turismoUY-salida.png"
-    ],
-    "Teoria-de-Lenguajes": ["../resources/imgs/automata-theory.png"],
-    "ejtos-react_budget_app": [],
-    "uqwxd-react_labs": [],
-    "expressBookReviews" : []
+  "Arquitectura-de-Computadoras": ["../resources/imgs/assembly.png"],
+  "contablito": ["../resources/imgs/contablito.jpeg"],
+  "CS50.Intro-to-AI-with-Python": [
+    "../resources/imgs/CS50AI.png",
+    "../resources/imgs/cs50aiRobot.webp"
+  ],
+  "e-commerce": ["../resources/imgs/home.png"],
+  "guidodinello.github.io": ["../resources/imgs/personal-website.png"],
+  "Metodos-Numericos": ["../resources/imgs/newton-raphson.png"],
+  "Modelos-Estadisticos-para-Regresion-y-Clasificacion": [
+    "../resources/imgs/modelos-estadisticos.png"
+  ],
+  "polygonal-evolutionary-algorithm": [
+    "../resources/imgs/polygonal-evolutionary-algorithm.gif"
+  ],
+  "Programacion2": ["../resources/imgs/datastructures.png"],
+  "Programacion3": ["../resources/imgs/dijkstra-algorithm.jpeg"],
+  "Programacion4": ["../resources/imgs/hotel-management.jpg"],
+  "Taller-de-Programacion": [
+    "../resources/imgs/turismoUY.png",
+    "../resources/imgs/turismoUY-actividad.png",
+    "../resources/imgs/turismoUY-login.png",
+    "../resources/imgs/turismoUY-salida.png"
+  ],
+  "Teoria-de-Lenguajes": ["../resources/imgs/automata-theory.png"],
+  "ejtos-react_budget_app": [],
+  "uqwxd-react_labs": [],
+  "expressBookReviews": []
 }

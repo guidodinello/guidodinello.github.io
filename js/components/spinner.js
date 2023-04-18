@@ -2,15 +2,14 @@ export class SpinnerWrapper {
     constructor(id, parentNode) {
         this.id = this.#sanitize(id);
         this.spinnerWrapper = this.#element();
-        if (parentNode) 
-            parentNode.appendChild(this.spinnerWrapper)
+        if (parentNode) parentNode.appendChild(this.spinnerWrapper);
     }
 
     show() {
-        this.spinnerWrapper.classList.remove('d-none');
+        this.spinnerWrapper.classList.remove("d-none");
     }
     hide() {
-        this.spinnerWrapper.classList.add('d-none');
+        this.spinnerWrapper.classList.add("d-none");
     }
 
     DOMreference() {
@@ -22,9 +21,9 @@ export class SpinnerWrapper {
     }
 
     #element() {
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('id', this.id);
-        wrapper.classList.add('d-none');
+        const wrapper = document.createElement("div");
+        wrapper.setAttribute("id", this.id);
+        wrapper.classList.add("d-none");
         wrapper.innerHTML = `
         <div id="spinner" class="spinner-border text-success" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -33,6 +32,6 @@ export class SpinnerWrapper {
     }
 
     #sanitize(id) {
-        return id.replace(/[^a-zA-Z0-9]/g, '');
+        return id.replace(/[^a-zA-Z0-9]/g, "");
     }
 }

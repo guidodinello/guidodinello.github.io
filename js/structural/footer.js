@@ -32,5 +32,5 @@ const footer = `
 
 </footer>
 </div>
-`
+`;
 document.body.insertAdjacentHTML("beforeend", footer);

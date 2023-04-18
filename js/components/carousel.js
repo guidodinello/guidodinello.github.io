@@ -2,37 +2,39 @@ export class Carousel {
     constructor(id, parentNode) {
         this.id = this.#sanitize(id);
         this.carousel = this.#element();
-        if (parentNode) 
-            parentNode.appendChild(this.carousel)
-        this.itemsList = this.carousel.querySelector('.carousel-inner');
+        if (parentNode) parentNode.appendChild(this.carousel);
+        this.itemsList = this.carousel.querySelector(".carousel-inner");
     }
-
 
     clone() {
         const copy = new Carousel(`${this.id}Copy`);
         copy.carousel = this.carousel.cloneNode(true);
-        copy.carousel.setAttribute('id', `carouselControls${copy.id}`);
-        copy.carousel.querySelector('.carousel-control-prev').setAttribute('data-bs-target', `#carouselControls${copy.id}`);
-        copy.carousel.querySelector('.carousel-control-next').setAttribute('data-bs-target', `#carouselControls${copy.id}`);
+        copy.carousel.setAttribute("id", `carouselControls${copy.id}`);
+        copy.carousel
+            .querySelector(".carousel-control-prev")
+            .setAttribute("data-bs-target", `#carouselControls${copy.id}`);
+        copy.carousel
+            .querySelector(".carousel-control-next")
+            .setAttribute("data-bs-target", `#carouselControls${copy.id}`);
         return copy;
     }
 
     addItems(items, slideFunc) {
-        items.forEach(item => {
-            this.itemsList.appendChild(slideFunc(item))
+        items.forEach((item) => {
+            this.itemsList.appendChild(slideFunc(item));
         });
         // add one default slide if there are no slides
         if (!this.itemsList.firstElementChild)
-            this.itemsList.appendChild(this.slideCreator( this.imageDefault ));
+            this.itemsList.appendChild(this.slideCreator(this.imageDefault));
         // add active class to the first slide
-        this.itemsList.firstElementChild.classList.add('active');
+        this.itemsList.firstElementChild.classList.add("active");
     }
 
-    slideCreator(creatorFunc, onclickevent = void(0)) {
-        const item = document.createElement('div');
-        item.classList.add('carousel-item', 'h-100');
-        item.addEventListener('click', onclickevent);
-        item.innerHTML = creatorFunc(); 
+    slideCreator(creatorFunc, onclickevent = void 0) {
+        const item = document.createElement("div");
+        item.classList.add("carousel-item", "h-100");
+        item.addEventListener("click", onclickevent);
+        item.innerHTML = creatorFunc();
         return item;
     }
 
@@ -49,10 +51,10 @@ export class Carousel {
     }
 
     #element() {
-        const carousel = document.createElement('div');
-        carousel.classList.add('carousel', 'slide');
-        carousel.setAttribute('id', `carouselControls${this.id}`);
-        carousel.setAttribute('data-bs-ride', 'carousel');
+        const carousel = document.createElement("div");
+        carousel.classList.add("carousel", "slide");
+        carousel.setAttribute("id", `carouselControls${this.id}`);
+        carousel.setAttribute("data-bs-ride", "carousel");
         carousel.innerHTML = `
         <div class="carousel-inner h-100">
             <!-- Aca van los items -->
@@ -71,6 +73,6 @@ export class Carousel {
     }
 
     #sanitize(id) {
-        return id.replace(/[^a-zA-Z0-9]/g, '');
+        return id.replace(/[^a-zA-Z0-9]/g, "");
     }
 }

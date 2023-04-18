@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  node-version: '16'
+  node-version: "16"
 
 jobs:
   code-style-checks:
