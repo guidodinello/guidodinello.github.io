@@ -7,4 +7,9 @@ bootstrap-5.2.1-dist/*
 !fontawesome-free-6.2.0-web/css/solid.css
 fontawesome-free-6.2.0-web/*
 
-todos
+node_modules/*
+package-lock.json
+package.json
+
+TODO
+
