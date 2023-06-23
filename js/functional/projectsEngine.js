@@ -11,14 +11,6 @@ import { header } from "../components/utils.js";
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
-const pageModal = new Modal("pageModal", document.body);
-const searchForm = document.querySelector("#searchForm");
-const formInput = searchForm.querySelector("input");
-const formSpinner = searchForm.querySelector("#form-spinner");
-
-const pageSpinnerWrapper = new SpinnerWrapper("spinnerWrapper", document.body);
-pageSpinnerWrapper.show();
-
 async function loadProjects() {
     const memory = [];
 
@@ -77,7 +69,17 @@ async function loadProjects() {
     return memory;
 }
 
-const projectsCards = await loadProjects();
+const projectsLoaded = loadProjects();
+
+const pageModal = new Modal("pageModal", document.body);
+const searchForm = document.querySelector("#searchForm");
+const formInput = searchForm.querySelector("input");
+const formSpinner = searchForm.querySelector("#form-spinner");
+
+const pageSpinnerWrapper = new SpinnerWrapper("spinnerWrapper", document.body);
+pageSpinnerWrapper.show();
+
+const projectsCards = await projectsLoaded;
 pageSpinnerWrapper.hide();
 formInput.addEventListener("input", (e) => {
     formSpinner.classList.remove("d-none");
