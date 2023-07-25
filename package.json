@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "format": "npx prettier --write js/**/*.js && npx eslint js/**/*.js --quiet --fix && npx htmlhint *.html ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "htmlhint": "^1.1.4"
+    "htmlhint": "^1.1.4",
+    "prettier": "^3.0.0"
   }
 }
