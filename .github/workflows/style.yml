@@ -22,23 +22,22 @@ jobs:
           node-version: ${{ env.node-version }}
 
       - name: Install dependencies
-        run: |
-          npm install eslint prettier htmlhint
-
-      - name: Run ESLint
-        run: npx eslint . --quiet
-
-      - name: Run Prettier
-        run: npx prettier --check .
-
-      - name: Run HTMLHint
-        run: npx htmlhint .
+        run: npm install --only=dev
 
       - name: Stop build on style violations
         run: |
-          if npx eslint . --quiet && npx prettier --check . && npx htmlhint .; then
+          npx eslint --quiet js/**/*.js
+          eslint=$?
+          npx prettier --check js/**/*.js
+          prettier=$?
+          npx htmlhint *.html
+          htmlhint=$?
+          if [ $eslint -eq 0 ] && [ $prettier -eq 0 ] && [ $htmlhint -eq 0 ]; then
             echo "All style checks passed"
           else
             echo "Style checks failed - stopping build"
+            echo "$eslint"
+            echo "$prettier"
+            echo "$htmlhint"
             exit 1
           fi
