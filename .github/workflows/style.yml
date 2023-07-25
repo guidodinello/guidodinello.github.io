@@ -48,6 +48,8 @@ jobs:
     needs: code-style-checks
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all branches and history
 
       - name: Merge develop -> main
         if: ${{ needs.code-style-checks.result == 'success' }} 
