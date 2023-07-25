@@ -1,6 +1,18 @@
-export function cardBody(title, description, btnsArr) {
+export function cardStarsTitle(title, stars) {
     return `
-<h5 class="card-title mb-4">${title}</h5>
+<div class="mb-4 row">
+    <i aria-hidden="true" class="fa fa-star col-2 text-warning"><span class="text-black-50 ps-1">${stars}</span></i>
+    <h5 class="card-title col-10">${title}</h5>
+</div>`;
+}
+
+function defaultCardTitle(title) {
+    return `<h5 class="card-title mb-4">${title}</h5>`;
+}
+
+export function cardBody(title, description, btnsArr, titleFactory = defaultCardTitle) {
+    return `
+${titleFactory(title)}
 <p class="card-text mb-3" ${
     description ? `>${description}` : "style='height:30px;'>"
 }</p>

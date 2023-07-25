@@ -2,6 +2,7 @@ import {
     cardBody,
     projectCard,
     tagFactory,
+    cardStarsTitle
 } from "../components/project-card.js";
 import { SpinnerWrapper } from "../components/spinner.js";
 import { Carousel } from "../components/carousel.js";
@@ -10,6 +11,14 @@ import { header } from "../components/utils.js";
 
 import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
+
+const sortPolicy = (a, b) => {
+    // priority 1.stars, 2. description length, 3. tags quantity
+    const stars = b.stars - a.stars;
+    const desc = b.description.length - a.description.length;
+    const tags = b.tags.length - a.tags.length;
+    return stars || desc || tags;
+}
 
 async function loadProjects() {
     const memory = [];
@@ -30,6 +39,9 @@ async function loadProjects() {
         return project;
     });
 
+    // sort projects
+    projsImgs.sort(sortPolicy);
+
     const projectsList = document.querySelector("#projectsList");
     for (const project of projsImgs) {
         const buttons = [{ text: "Go to source code", url: project.url }];
@@ -37,7 +49,9 @@ async function loadProjects() {
         if (project.deploy)
             buttons.push({ text: "Go to deploy", url: project.deploy });
 
-        const left = cardBody(project.title, project.description, buttons);
+        const left = cardBody(project.title, project.description, buttons, (title) => {
+            return cardStarsTitle(title, project.stars);
+        });
 
         const imgCarr = new Carousel(project.title);
         imgCarr.DOMreference().style.cursor = "zoom-in";

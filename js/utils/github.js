@@ -12,6 +12,7 @@ export async function getRepos() {
                     url: repo["html_url"],
                     tags: repo["topics"],
                     language: repo["language"],
+                    stars: repo["stargazers_count"],
                     deploy
                 };
             })
