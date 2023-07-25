@@ -9,11 +9,11 @@ export function titledCard(title, quote, author, button) {
     <blockquote class="blockquote mb-0">
         <p>${quote}</p>
         <footer class="blockquote-footer mt-2"><cite title="${author}">${author}</cite>
-            ${
-    button
-        ? `<a class="btn btn-primary float-end me-2" href="${button.href}">${button.text}</a>`
-        : ""
-}
+    ${
+        button
+            ? `<a class="btn btn-primary float-end me-2" href="${button.href}">${button.text}</a>`
+            : ""
+    }
         </footer>
     </blockquote>
 </div>`;

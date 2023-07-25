@@ -2,7 +2,9 @@ export class Carousel {
     constructor(id, parentNode) {
         this.id = this.#sanitize(id);
         this.carousel = this.#element();
-        if (parentNode) {parentNode.appendChild(this.carousel);}
+        if (parentNode) {
+            parentNode.appendChild(this.carousel);
+        }
         this.itemsList = this.carousel.querySelector(".carousel-inner");
     }
 
@@ -24,8 +26,9 @@ export class Carousel {
             this.itemsList.appendChild(slideFunc(item));
         });
         // add one default slide if there are no slides
-        if (!this.itemsList.firstElementChild)
-        {this.itemsList.appendChild(this.slideCreator(this.imageDefault));}
+        if (!this.itemsList.firstElementChild) {
+            this.itemsList.appendChild(this.slideCreator(this.imageDefault));
+        }
         // add active class to the first slide
         this.itemsList.firstElementChild.classList.add("active");
     }
@@ -38,7 +41,10 @@ export class Carousel {
         return item;
     }
 
-    imageDefault(src = "../../resources/imgs/null.webp", alt = "default image") {
+    imageDefault(
+        src = "../../resources/imgs/null.webp",
+        alt = "default image",
+    ) {
         return `<img src="${src}" class="d-block w-100 h-100" style="object-fit:contain;" alt="${alt}">`;
     }
 

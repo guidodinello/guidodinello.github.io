@@ -1,6 +1,7 @@
 const CV_PATH = "../../resources/Guido Dinello.pdf";
 
-const brandHTML = "<a class=\"navbar-brand mx-auto\" href=\"index.html\">Guido Dinello</a>";
+const brandHTML =
+    "<a class='navbar-brand mx-auto' href='index.html'>Guido Dinello</a>";
 const dropdownName = "More";
 const dropdownItem = (name, url = "", onclick = null) => {
     const onclickAttr = onclick ? `onclick="${onclick.name}()"` : "";
@@ -29,7 +30,7 @@ const contactItemWaveAction = () => {
 
     const interval = 350; // how much time should the delay between two iterations be
     contactList.querySelectorAll("li").forEach((li, index) => {
-    // delay between each iteration
+        // delay between each iteration
         setTimeout(() => {
             li.style.transition = "all .45s ease-in-out";
             li.style.transform = "scale(2.0)";
