@@ -12,11 +12,12 @@ export async function getRepos() {
                     repo["homepage"] || (await getGithubPagesUrl(repo["name"]));
                 return {
                     title: repo["name"],
-                    description: repo["description"],
+                    description: repo["description"] || "",
                     url: repo["html_url"],
-                    tags: repo["topics"],
+                    tags: repo["topics"] || [],
                     language: repo["language"],
                     stars: repo["stargazers_count"],
+                    updated_at: repo["updated_at"],
                     deploy,
                 };
             }),
