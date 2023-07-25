@@ -51,9 +51,10 @@ jobs:
 
       - name: Merge develop -> main
         if: ${{ needs.code-style-checks.result == 'success' }} 
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          target_branch: main
-          message: "Automated merge from develop to main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git merge --ff-only develop
+
+          # Push changes to the remote main branch
+          git push origin main
