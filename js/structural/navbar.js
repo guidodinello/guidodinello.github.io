@@ -1,6 +1,6 @@
 const CV_PATH = "../../resources/Guido Dinello.pdf";
 
-const brandHTML = `<a class="navbar-brand mx-auto" href="index.html">Guido Dinello</a>`;
+const brandHTML = "<a class=\"navbar-brand mx-auto\" href=\"index.html\">Guido Dinello</a>";
 const dropdownName = "More";
 const dropdownItem = (name, url = "", onclick = null) => {
     const onclickAttr = onclick ? `onclick="${onclick.name}()"` : "";

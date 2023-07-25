@@ -10,7 +10,8 @@ function defaultCardTitle(title) {
     return `<h5 class="card-title mb-4">${title}</h5>`;
 }
 
-export function cardBody(title, description, btnsArr, titleFactory = defaultCardTitle) {
+export function cardBody(title, description, btnsArr, 
+    titleFactory = defaultCardTitle) {
     return `
 ${titleFactory(title)}
 <p class="card-text mb-3" ${

@@ -2,7 +2,7 @@ export class Carousel {
     constructor(id, parentNode) {
         this.id = this.#sanitize(id);
         this.carousel = this.#element();
-        if (parentNode) parentNode.appendChild(this.carousel);
+        if (parentNode) {parentNode.appendChild(this.carousel);}
         this.itemsList = this.carousel.querySelector(".carousel-inner");
     }
 
@@ -25,7 +25,7 @@ export class Carousel {
         });
         // add one default slide if there are no slides
         if (!this.itemsList.firstElementChild)
-            this.itemsList.appendChild(this.slideCreator(this.imageDefault));
+        {this.itemsList.appendChild(this.slideCreator(this.imageDefault));}
         // add active class to the first slide
         this.itemsList.firstElementChild.classList.add("active");
     }
