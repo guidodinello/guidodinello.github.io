@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node-version }}
 
@@ -47,12 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: code-style-checks
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge development -> staging
-        if : ${{ needs.code-style-checks.result == 'success' }}
+      - uses: actions/checkout@v3
+
+      - name: Merge develop -> main
+        if: ${{ needs.code-style-checks.result == 'success' }} 
         uses: devmasx/merge-branch@master
         with:
           type: now
-          from_branch: develop
           target_branch: main
+          message: "Automated merge from develop to main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
