@@ -21,3 +21,7 @@ img {
 .increase-on-hover:hover {
   transform: scale(1.02);
 }
+
+.highlight {
+  background-color: yellow;
+}
