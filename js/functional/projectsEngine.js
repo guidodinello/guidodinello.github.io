@@ -13,7 +13,7 @@ import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
 const sortPolicy = (a, b) => {
-    // priority 1.more stars, 2.most recently updated, 
+    // priority 1.more stars, 2.most recently updated,
     // 3.longer description length, 4.more tags quantity
     const stars = b.stars - a.stars;
     const updated = new Date(b.updated_at) - new Date(a.updated_at);
