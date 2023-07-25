@@ -79,7 +79,7 @@ const header = `
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-center">
                     ${dropdownItem("Contact", "", contactItemWaveAction)}
-                    ${downloadableDropdownItem("my_cv.pdf", CV_PATH, "")}
+                    ${downloadableDropdownItem("Get my CV!", CV_PATH, "")}
                 </ul>
             </li>
         </ul>
