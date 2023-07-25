@@ -1,4 +1,8 @@
-import {cardBody,projectCard,tagFactory,cardStarsTitle
+import {
+    cardBody,
+    projectCard,
+    tagFactory,
+    cardStarsTitle,
 } from "../components/project-card.js";
 import { SpinnerWrapper } from "../components/spinner.js";
 import { Carousel } from "../components/carousel.js";
@@ -25,7 +29,9 @@ async function loadProjects() {
 
     // filter out projects that are in the ignore list
     const projects = repos.reduce((result, repo) => {
-        if (!ignoreProjects.includes(repo.title)) {result.push(repo);}
+        if (!ignoreProjects.includes(repo.title)) {
+            result.push(repo);
+        }
         return result;
     }, []);
 
@@ -42,21 +48,26 @@ async function loadProjects() {
     for (const project of projsImgs) {
         const buttons = [{ text: "Go to source code", url: project.url }];
         // add another button if theres github pages associated to the repo
-        if (project.deploy)
-        {buttons.push({ text: "Go to deploy", url: project.deploy });}
+        if (project.deploy) {
+            buttons.push({ text: "Go to deploy", url: project.deploy });
+        }
 
-        const left = cardBody(project.title, project.description, buttons, 
+        const left = cardBody(
+            project.title,
+            project.description,
+            buttons,
             (title) => {
                 return cardStarsTitle(title, project.stars);
-            });
+            },
+        );
 
         const imgCarr = new Carousel(project.title);
         imgCarr.DOMreference().style.cursor = "zoom-in";
         imgCarr.addItems(project.images, (img) => {
             const imageCreator = () => {
                 return imgCarr.imageDefault(
-                    img, 
-                    `${project.title} illustrative image`
+                    img,
+                    `${project.title} illustrative image`,
                 );
             };
             return imgCarr.slideCreator(imageCreator);
@@ -65,14 +76,14 @@ async function loadProjects() {
         const card = projectCard(
             left,
             tagFactory(project.tags),
-            imgCarr.DOMreference()
+            imgCarr.DOMreference(),
         );
         projectsList.appendChild(card);
 
         const showInModal = () => {
             pageModal.update(
                 header("1", null, null, null, project.title),
-                imgCarr.clone().DOMreference()
+                imgCarr.clone().DOMreference(),
             );
             pageModal.show();
         };

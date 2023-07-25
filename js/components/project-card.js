@@ -10,18 +10,22 @@ function defaultCardTitle(title) {
     return `<h5 class="card-title mb-4">${title}</h5>`;
 }
 
-export function cardBody(title, description, btnsArr, 
-    titleFactory = defaultCardTitle) {
+export function cardBody(
+    title,
+    description,
+    btnsArr,
+    titleFactory = defaultCardTitle,
+) {
     return `
 ${titleFactory(title)}
 <p class="card-text mb-3" ${
-    description ? `>${description}` : "style='height:30px;'>"
-}</p>
+        description ? `>${description}` : "style='height:30px;'>"
+    }</p>
 <div class="d-flex justify-content-evenly"> 
     ${btnsArr
         .map(
             (btn) =>
-                `<a href="${btn.url}" class="btn btn-primary me-2" target="_blank">${btn.text}</a>`
+                `<a href="${btn.url}" class="btn btn-primary me-2" target="_blank">${btn.text}</a>`,
         )
         .join("")}
 </div>`;
@@ -31,7 +35,7 @@ export function tagFactory(tags) {
     function tagHTML(name) {
         const GOOGLE_SEARCH = "https://www.google.com/search?q=";
         const classList =
-      "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light";
+            "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light";
         const style = "min-width: 40px; font-size: small;";
         return `
         <li class="nav-item me-2">

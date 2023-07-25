@@ -2,7 +2,9 @@ export class SpinnerWrapper {
     constructor(id, parentNode) {
         this.id = this.#sanitize(id);
         this.spinnerWrapper = this.#element();
-        if (parentNode) {parentNode.appendChild(this.spinnerWrapper);}
+        if (parentNode) {
+            parentNode.appendChild(this.spinnerWrapper);
+        }
     }
 
     show() {
