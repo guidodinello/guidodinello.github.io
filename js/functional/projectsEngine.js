@@ -109,7 +109,6 @@ const projectsCards = await projectsLoaded;
 pageSpinnerWrapper.hide();
 
 let debounceUnhighlightTimer = null;
-let debounceHighlight = null;
 const highlightedElems = new Set();
 const highlightsHandlers = new Set();
 lookUpBar.addEventListener("input", (e) => {
@@ -118,7 +117,7 @@ lookUpBar.addEventListener("input", (e) => {
         lubSpinner.classList.add("d-none");
     }, 1000);
 
-    highlightsHandlers.clear()
+    highlightsHandlers.clear();
     const target = e.target.value.toLowerCase();
     for (const [card, { title, description, tags }] of projectsCards) {
         const tit = title.toLowerCase().includes(target);
@@ -126,21 +125,21 @@ lookUpBar.addEventListener("input", (e) => {
         const intags = tags.some((tag) => tag.toLowerCase().includes(target));
 
         if (!(tit || desc || intags)) {
-            card.style.display = "none"
+            card.style.display = "none";
         } else {
-            card.style.display = "flex"
+            card.style.display = "flex";
             // Function to execute the highlights logic
             const highlightCardPipeline = () => {
                 // Highlight matching text in title
                 if (tit) {
-                    const titleElem = card.querySelector('.card-title')
-                    highlightedElems.add(titleElem)
+                    const titleElem = card.querySelector(".card-title");
+                    highlightedElems.add(titleElem);
                     highlightText(titleElem, target);
                 }
                 // Highlight matching text in description
                 if (desc) {
-                    const descElem = card.querySelector('.card-text')
-                    highlightedElems.add(descElem)
+                    const descElem = card.querySelector(".card-text");
+                    highlightedElems.add(descElem);
                     highlightText(descElem, target);
                 }
                 // Highlight matching text in tags
@@ -149,30 +148,30 @@ lookUpBar.addEventListener("input", (e) => {
                     for (const tagElement of tagElements) {
                         const tag = tagElement.textContent.toLowerCase();
                         if (tag.includes(target)) {
-                            highlightedElems.add(tagElement)
+                            highlightedElems.add(tagElement);
                             highlightText(tagElement, target);
                         }
                     }
                 }
-            }
-            highlightsHandlers.add(highlightCardPipeline)
+            };
+            highlightsHandlers.add(highlightCardPipeline);
         }
     }
     // reset highlights after 500ms of no input
     clearTimeout(debounceUnhighlightTimer);
     debounceUnhighlightTimer = setTimeout(() => {
-        resetHighlights()
-        highlightsHandlers.forEach((handler) => handler())
-        highlightsHandlers.clear()
+        resetHighlights();
+        highlightsHandlers.forEach((handler) => handler());
+        highlightsHandlers.clear();
     }, 500);
 });
 
 function resetHighlights() {
     // should be at the start of the debouncer
     highlightedElems.forEach((el) => {
-        unhighlightText(el) 
+        unhighlightText(el);
     });
-    highlightedElems.clear()
+    highlightedElems.clear();
 }
 
 // Hhighlight text within an element
@@ -180,14 +179,14 @@ function highlightText(element, searchQuery) {
     if (!element.getAttribute("data-original-content")) {
         element.setAttribute("data-original-content", element.innerText);
     }
-    console.log(`Tried to highlight ${searchQuery} in content ${element.innerText} of ${element.outerHTML}`)
     const regex = new RegExp(searchQuery, "i");
-    element.innerHTML = element.innerText.replace(regex, (match) => `<span class='highlight'>${match}</span>`);
+    element.innerHTML = element.innerText.replace(
+        regex,
+        (match) => `<span class='highlight'>${match}</span>`,
+    );
 }
 
 function unhighlightText(element) {
-    console.log(`Tried to unhighlight in ${element.innerHTML} of ${element.outerHTML}`)
     element.innerHTML = element.getAttribute("data-original-content");
     element.removeAttribute("data-original-content");
 }
-

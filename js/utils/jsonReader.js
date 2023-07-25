@@ -5,6 +5,7 @@ export async function readJSON(path) {
             return data;
         })
         .catch((error) => {
+            // eslint-disable-next-line no-console
             console.log("ERROR while reading file in path: ", path, error);
         });
 }
