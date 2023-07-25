@@ -52,14 +52,12 @@ jobs:
     steps:
       - name: Check Out Code
         uses: actions/checkout@v2
-
-      - name: Fetch Latest Changes
-        run: git fetch --all
-
+      
       - name: Merge to Main
         run: |
+          git fetch --all
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git checkout main
-          git merge --no-ff "$GITHUB_SHA" -m "Automated merge from develop to main"
+          git merge --no-ff "develop" -m "Automated merge from develop to main"
           git push
