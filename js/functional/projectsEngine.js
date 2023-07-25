@@ -100,27 +100,93 @@ const projectsLoaded = loadProjects();
 
 const pageModal = new Modal("pageModal", document.body);
 const searchForm = document.querySelector("#searchForm");
-const formInput = searchForm.querySelector("input");
-const formSpinner = searchForm.querySelector("#form-spinner");
+const lookUpBar = searchForm.querySelector("input");
+const lubSpinner = searchForm.querySelector("#form-spinner");
 
 const pageSpinnerWrapper = new SpinnerWrapper("spinnerWrapper", document.body);
 pageSpinnerWrapper.show();
-
 const projectsCards = await projectsLoaded;
 pageSpinnerWrapper.hide();
-formInput.addEventListener("input", (e) => {
-    formSpinner.classList.remove("d-none");
+
+let debounceUnhighlightTimer = null;
+const highlightedElems = new Set();
+const highlightsHandlers = new Set();
+lookUpBar.addEventListener("input", (e) => {
+    lubSpinner.classList.remove("d-none");
     setTimeout(() => {
-        formSpinner.classList.add("d-none");
+        lubSpinner.classList.add("d-none");
     }, 1000);
 
+    highlightsHandlers.clear();
+    const target = e.target.value.toLowerCase();
     for (const [card, { title, description, tags }] of projectsCards) {
-        const target = e.target.value.toLowerCase();
-
         const tit = title.toLowerCase().includes(target);
-        const desc = (description || "").toLowerCase().includes(target);
+        const desc = description.toLowerCase().includes(target);
         const intags = tags.some((tag) => tag.toLowerCase().includes(target));
 
-        card.style.display = tit || desc || intags ? "flex" : "none";
+        if (!(tit || desc || intags)) {
+            card.style.display = "none";
+        } else {
+            card.style.display = "flex";
+            // Function to execute the highlights logic
+            const highlightCardPipeline = () => {
+                // Highlight matching text in title
+                if (tit) {
+                    const titleElem = card.querySelector(".card-title");
+                    highlightedElems.add(titleElem);
+                    highlightText(titleElem, target);
+                }
+                // Highlight matching text in description
+                if (desc) {
+                    const descElem = card.querySelector(".card-text");
+                    highlightedElems.add(descElem);
+                    highlightText(descElem, target);
+                }
+                // Highlight matching text in tags
+                if (intags) {
+                    const tagElements = card.querySelectorAll(".tag-text");
+                    for (const tagElement of tagElements) {
+                        const tag = tagElement.textContent.toLowerCase();
+                        if (tag.includes(target)) {
+                            highlightedElems.add(tagElement);
+                            highlightText(tagElement, target);
+                        }
+                    }
+                }
+            };
+            highlightsHandlers.add(highlightCardPipeline);
+        }
     }
+    // reset highlights after 500ms of no input
+    clearTimeout(debounceUnhighlightTimer);
+    debounceUnhighlightTimer = setTimeout(() => {
+        resetHighlights();
+        highlightsHandlers.forEach((handler) => handler());
+        highlightsHandlers.clear();
+    }, 500);
 });
+
+function resetHighlights() {
+    // should be at the start of the debouncer
+    highlightedElems.forEach((el) => {
+        unhighlightText(el);
+    });
+    highlightedElems.clear();
+}
+
+// Hhighlight text within an element
+function highlightText(element, searchQuery) {
+    if (!element.getAttribute("data-original-content")) {
+        element.setAttribute("data-original-content", element.innerText);
+    }
+    const regex = new RegExp(searchQuery, "i");
+    element.innerHTML = element.innerText.replace(
+        regex,
+        (match) => `<span class='highlight'>${match}</span>`,
+    );
+}
+
+function unhighlightText(element) {
+    element.innerHTML = element.getAttribute("data-original-content");
+    element.removeAttribute("data-original-content");
+}

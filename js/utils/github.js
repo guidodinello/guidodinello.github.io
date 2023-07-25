@@ -24,6 +24,7 @@ export async function getRepos() {
         );
         return repos;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.log("ERROR while fetching user repos: ", error);
         return [];
     }
@@ -40,6 +41,7 @@ async function getGithubPagesUrl(repo_name) {
             return repoURL;
         }
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.log("ERROR with REPO", repo_name);
     }
 }
