@@ -55,7 +55,7 @@ jobs:
       
       - name: Merge to Main
         run: |
-          git fetch --all
+          git pull origin main
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git checkout main
