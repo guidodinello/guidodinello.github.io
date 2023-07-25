@@ -13,11 +13,13 @@ import { getRepos } from "../utils/github.js";
 import { readJSON } from "../utils/jsonReader.js";
 
 const sortPolicy = (a, b) => {
-    // priority 1.stars, 2. description length, 3. tags quantity
+    // priority 1.more stars, 2.most recently updated,
+    // 3.longer description length, 4.more tags quantity
     const stars = b.stars - a.stars;
+    const updated = new Date(b.updated_at) - new Date(a.updated_at);
     const desc = b.description.length - a.description.length;
     const tags = b.tags.length - a.tags.length;
-    return stars || desc || tags;
+    return stars || updated || desc || tags;
 };
 
 async function loadProjects() {
