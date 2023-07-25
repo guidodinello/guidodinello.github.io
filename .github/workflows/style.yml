@@ -48,8 +48,11 @@ jobs:
     needs: code-style-checks
     steps:
       - uses: actions/checkout@v2
-      - name: Merge develop into main
+      - name: Merge development -> staging
         if : ${{ needs.code-style-checks.result == 'success' }}
-        run: |
-          git merge develop main
-          git push
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: develop
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
