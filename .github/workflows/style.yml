@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    types:
-      - closed
 
 env:
   node-version: "16"
@@ -55,6 +52,9 @@ jobs:
     steps:
       - name: Check Out Code
         uses: actions/checkout@v2
+
+      - name: Fetch Latest Changes
+        run: git fetch --all
 
       - name: Merge to Main
         run: |
