@@ -24,7 +24,15 @@
     "../resources/imgs/turismoUY-salida.png"
   ],
   "Teoria-de-Lenguajes": ["../resources/imgs/automata-theory.png"],
-  "ejtos-react_budget_app": [],
+  "ejtos-react_budget_app": [
+    "../resources/imgs/react-logo.png",
+    "../resources/imgs/budget-app.png
+  ],
   "uqwxd-react_labs": [],
-  "expressBookReviews": []
+  "expressBookReviews": [],
+  "scripts" : [
+    "../resources/imgs/python.webp", 
+    "../resources/imgs/rust-logo.png"
+  ],
+  "PFunc" : ["../resources/imgs/haskell-logo.png"]
 }
