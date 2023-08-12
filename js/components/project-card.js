@@ -1,8 +1,8 @@
 export function cardStarsTitle(title, stars) {
     return `
 <div class="mb-4 row">
-    <i aria-hidden="true" class="fa fa-star col-2 text-warning"><span class="text-black-50 ps-1">${stars}</span></i>
-    <h5 class="card-title col-10">${title}</h5>
+    <i aria-hidden="true" class="fa fa-star col-2 text-warning pe-0"><span class="text-black-50 ps-1">${stars}</span></i>
+    <h5 class="card-title col-10 my-auto">${title}</h5>
 </div>`;
 }
 
@@ -31,17 +31,17 @@ ${titleFactory(title)}
 </div>`;
 }
 
+function tagHTML(name) {
+    const GOOGLE_SEARCH = "https://www.google.com/search?q=";
+    const classList =
+        "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light tag-text";
+    const style = "min-width: 40px; font-size: small;";
+    return `
+    <li class="nav-item me-2">
+        <a class="${classList}" style="${style}" target="_blank" href="${GOOGLE_SEARCH}${name}">${name}</a>
+    </li>`;
+}
 export function tagFactory(tags) {
-    function tagHTML(name) {
-        const GOOGLE_SEARCH = "https://www.google.com/search?q=";
-        const classList =
-            "nav-link increase-on-hover link-success rounded-pill bg-success px-2 py-1 mt-2 mb-1 text-success bg-opacity-10 text-opacity-75 fw-light tag-text";
-        const style = "min-width: 40px; font-size: small;";
-        return `
-        <li class="nav-item me-2">
-            <a class="${classList}" style="${style}" target="_blank" href="${GOOGLE_SEARCH}${name}">${name}</a>
-        </li>`;
-    }
     let html = "";
     for (const tagName of tags) {
         html += tagHTML(tagName);
