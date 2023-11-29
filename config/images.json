@@ -34,5 +34,6 @@
     "../resources/imgs/python.webp", 
     "../resources/imgs/rust-logo.png"
   ],
-  "PFunc" : ["../resources/imgs/haskell-logo.png"]
+  "PFunc" : ["../resources/imgs/haskell-logo.png"],
+  "slack_quotes_bot": ["../resources/imgs/slack_logo.png", "../resources/imgs/sun_tzu.jpg"]
 }
