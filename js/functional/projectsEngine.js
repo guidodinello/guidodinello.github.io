@@ -71,10 +71,10 @@ async function loadProjects() {
             const type = ext === "mp4" ? "video" : "image";
 
             const title = `${project.title} illustrative ${type}`;
-            const creator = type === "image"
-                ? () => imgCarr.imageDefault(src, title)
-                : () => imgCarr.videoDefault(src, title);
-        
+            const creator =
+                type === "image"
+                    ? () => imgCarr.imageDefault(src, title)
+                    : () => imgCarr.videoDefault(src, title);
 
             return imgCarr.slideCreator(creator);
         });

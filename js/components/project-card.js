@@ -1,7 +1,7 @@
 export function cardStarsTitle(title, stars) {
     return `
 <div class="mb-4 row">
-    <h5 class="card-title my-auto" style="display: grid;">
+    <h5 class="card-title my-auto" style="display: grid; grid-columns">
         <i aria-hidden="true" class="fa fa-star col-2 text-warning pe-0"><span class="text-black-50 ps-1" style="align-self:start;">${stars}</span></i>
         <span>${title}</span>
     </h5>
