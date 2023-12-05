@@ -14,12 +14,13 @@ import { readJSON } from "../utils/jsonReader.js";
 
 const sortPolicy = (a, b) => {
     // priority 1.more stars, 2.most recently updated,
-    // 3.longer description length, 4.more tags quantity
+    // 3.longer description length, 4.has iamge associated, 5.more tags quantity
     const stars = b.stars - a.stars;
     const updated = new Date(b.updated_at) - new Date(a.updated_at);
     const desc = b.description.length - a.description.length;
+    const images = b.images.length - a.images.length;
     const tags = b.tags.length - a.tags.length;
-    return stars || updated || desc || tags;
+    return stars || updated || desc || images || tags;
 };
 
 async function loadProjects() {
