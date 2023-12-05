@@ -4,6 +4,7 @@ export class Modal {
         this.modal = this.#element();
         parentNode.appendChild(this.modal);
         this.caption = this.modal.querySelector(".modal-caption");
+        this.bodyWrapper = this.modal.querySelector(".modal-body-wrapper");
         this.body = this.modal.querySelector(".modal-body");
     }
 
@@ -18,9 +19,12 @@ export class Modal {
         modal.style.display = "none";
 
         modal.innerHTML = `
-        <div class="modal-body"></div>
-        <span class="modal-caption d-flex justify-content-center" style="color:white">
-        </span>`;
+        <div class="modal-body-wrapper">
+            <div class="modal-body">
+            </div>
+            <div class="modal-caption d-flex justify-content-center" style="color:white">
+                </div>
+        </div>`;
 
         const span = document.createElement("span");
         span.classList.add("modal-close");
