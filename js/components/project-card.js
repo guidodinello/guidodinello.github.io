@@ -1,8 +1,10 @@
 export function cardStarsTitle(title, stars) {
     return `
 <div class="mb-4 row">
-    <i aria-hidden="true" class="fa fa-star col-2 text-warning pe-0"><span class="text-black-50 ps-1">${stars}</span></i>
-    <h5 class="card-title col-10 my-auto">${title}</h5>
+    <h5 class="card-title my-auto" style="display: grid;">
+        <i aria-hidden="true" class="fa fa-star col-2 text-warning pe-0"><span class="text-black-50 ps-1" style="align-self:start;">${stars}</span></i>
+        <span>${title}</span>
+    </h5>
 </div>`;
 }
 
@@ -18,14 +20,14 @@ export function cardBody(
 ) {
     return `
 ${titleFactory(title)}
-<p class="card-text mb-3" ${
+<p class="card-text m-3 mt-2" ${
         description ? `>${description}` : "style='height:30px;'>"
     }</p>
-<div class="d-flex justify-content-evenly"> 
+<div class="d-flex justify-content-evenly mt-auto"> 
     ${btnsArr
         .map(
             (btn) =>
-                `<a href="${btn.url}" class="btn btn-primary me-2" target="_blank">${btn.text}</a>`,
+                `<a href="${btn.url}" class="btn btn-primary me-2 mt-auto" target="_blank">${btn.text}</a>`,
         )
         .join("")}
 </div>`;
@@ -58,7 +60,7 @@ export function projectCard(leftSideHTML, tagsHTML, rightSide) {
         <div class="order-md-last col-md-4 d-flex alig-items-center justify-content-center p-3 py-md-0 ps-md-0">
             
         </div>  
-        <div class="order-md-first col-md-8 pe-3">
+        <div class="order-md-first col-md-8 pe-3 d-flex flex-column">
             ${leftSideHTML}
         </div>
     </div>
