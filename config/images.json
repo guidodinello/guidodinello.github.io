@@ -5,20 +5,20 @@
     "../resources/imgs/CS50AI.png",
     "../resources/imgs/cs50aiRobot.webp"
   ],
-  "e-commerce": ["../resources/imgs/home.png"],
+  "e-commerce": ["../resources/imgs/home.jpg"],
   "guidodinello.github.io": ["../resources/imgs/personal-website.png"],
   "Metodos-Numericos": ["../resources/imgs/newton-raphson.png"],
   "Modelos-Estadisticos-para-Regresion-y-Clasificacion": [
     "../resources/imgs/modelos-estadisticos.png"
   ],
   "polygonal-evolutionary-algorithm": [
-    "../resources/imgs/polygonal-evolutionary-algorithm.gif"
+    "../resources/imgs/polygonal-evolutionary-algorithm.mp4"
   ],
   "Programacion2": ["../resources/imgs/datastructures.png"],
   "Programacion3": ["../resources/imgs/dijkstra-algorithm.jpeg"],
   "Programacion4": ["../resources/imgs/hotel-management.jpg"],
   "Taller-de-Programacion": [
-    "../resources/imgs/turismoUY.png",
+    "../resources/imgs/turismoUY.jpg",
     "../resources/imgs/turismoUY-actividad.png",
     "../resources/imgs/turismoUY-login.png",
     "../resources/imgs/turismoUY-salida.png"
@@ -31,7 +31,7 @@
   "uqwxd-react_labs": [],
   "expressBookReviews": [],
   "scripts" : [
-    "../resources/imgs/python.webp", 
+    "../resources/imgs/python.jpg", 
     "../resources/imgs/rust-logo.png"
   ],
   "PFunc" : ["../resources/imgs/haskell-logo.png"]

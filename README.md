@@ -6,3 +6,7 @@ A website that displays a collection of my coding projects. Built using HTML, CS
 [![Code Style Checks](https://github.com/guidodinello/guidodinello.github.io/actions/workflows/style.yml/badge.svg)](https://github.com/guidodinello/guidodinello.github.io/actions/workflows/style.yml)
 
 
+## Resources used to compress images and gifs
+
+- https://squoosh.app/
+- https://www.freeconvert.com/gif-compressor/download

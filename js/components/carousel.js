@@ -48,6 +48,16 @@ export class Carousel {
         return `<img src="${src}" class="d-block w-100 h-100" style="object-fit:contain;" alt="${alt}">`;
     }
 
+    videoDefault(
+        src = "../../resources/videos/null.webp",
+        alt = "default video",
+    ) {
+        return `
+        <video class="d-block w-100 h-100" alt="${alt}" loop autoplay>
+            <source src="${src}" type="video/mp4">
+        </video>`;
+    }
+
     DOMreference() {
         return this.carousel;
     }

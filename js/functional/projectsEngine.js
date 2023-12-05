@@ -65,14 +65,17 @@ async function loadProjects() {
 
         const imgCarr = new Carousel(project.title);
         imgCarr.DOMreference().style.cursor = "zoom-in";
-        imgCarr.addItems(project.images, (img) => {
-            const imageCreator = () => {
-                return imgCarr.imageDefault(
-                    img,
-                    `${project.title} illustrative image`,
-                );
-            };
-            return imgCarr.slideCreator(imageCreator);
+        imgCarr.addItems(project.images, (src) => {
+            const ext = src.split(".").pop().toLowerCase();
+            const type = ext === "mp4" ? "video" : "image";
+
+            const title = `${project.title} illustrative ${type}`;
+            const creator = type === "image"
+                ? () => imgCarr.imageDefault(src, title)
+                : () => imgCarr.videoDefault(src, title);
+        
+
+            return imgCarr.slideCreator(creator);
         });
 
         const card = projectCard(
